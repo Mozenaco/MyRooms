@@ -6,12 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/tvCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/material_white"
+        android:paddingBottom="@dimen/margin_padding_medium"
+        android:paddingLeft="@dimen/margin_padding_small"
+        android:paddingTop="@dimen/margin_padding_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="London, England" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvListRooms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/list_item"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvCity"
+        tools:listitem="@layout/list_item" />
+
 
 </android.support.constraint.ConstraintLayout>
