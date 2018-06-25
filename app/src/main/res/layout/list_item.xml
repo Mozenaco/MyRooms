@@ -51,7 +51,7 @@
                 android:padding="@dimen/margin_padding_small"
                 android:shadowColor="@color/material_black"
                 android:shadowRadius="10"
-                android:text="Hostel Number 1"
+                tools:text="Hostel Number 1"
                 android:textColor="@color/material_white"
                 android:textSize="@dimen/text_large"
                 android:textStyle="bold"
