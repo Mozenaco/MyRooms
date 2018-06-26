@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProvider
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import rooms.my.android.myrooms.R
@@ -15,15 +16,21 @@ import rooms.my.android.myrooms.viewmodel.ItensViewModel
 import rooms.my.android.myrooms.data.model.Property
 import rooms.my.android.myrooms.ui.adapter.PropertiesAdapter
 import javax.inject.Inject
+import android.net.NetworkInfo
+import android.content.Context.CONNECTIVITY_SERVICE
+import android.net.ConnectivityManager
+import android.widget.Toast
+import rooms.my.android.myrooms.ui.util.Util
+
 
 /**
  * The first activity called. Show a list of [Property] based on the data loaded
  * from the viewmodel [ItensViewModel]
-*
-* @author Mateus Andrade
-* @since 25/06/18
-*
-*/
+ *
+ * @author Mateus Andrade
+ * @since 25/06/18
+ *
+ */
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,10 +56,16 @@ class MainActivity : AppCompatActivity() {
         rvListRooms.adapter = propertiesAdapter
         rvListRooms.layoutManager = LinearLayoutManager(this)
 
-        launch (UI) {
-            mViewModel.getProperties()
-            mViewModel.getCity()
+        if(Util(this).isNetworkOnline()){
+            launch(UI) {
+                mViewModel.getProperties()
+                mViewModel.getCity()
+            }
+        }else
+        {
+            Toast.makeText(this, "You are not connected", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private fun setupObservers() {
@@ -63,7 +76,7 @@ class MainActivity : AppCompatActivity() {
         mViewModel.city.observeNotNull(this, ::setUpCity)
     }
 
-    fun setUpListOfProperties(list: List<Property>){
+    fun setUpListOfProperties(list: List<Property>) {
 
         propertiesAdapter.propertiesList.clear()
         propertiesAdapter.propertiesList.addAll(list)
@@ -71,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         //Toast.makeText(this, "Data List Loaded", Toast.LENGTH_SHORT).show()
     }
 
-    fun setUpCity(location: Location){
+    fun setUpCity(location: Location) {
 
         val name = location.city?.name
         val country = location.city?.country
