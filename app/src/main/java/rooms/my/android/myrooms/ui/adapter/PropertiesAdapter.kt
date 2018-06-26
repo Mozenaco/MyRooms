@@ -22,7 +22,7 @@ class PropertiesAdapter(
         propertiesList.also { items -> holder.bindItem(items[position]) }
     }
 
-    override fun getItemCount(): Int = propertiesList?.size ?: 0
+    override fun getItemCount(): Int = propertiesList.size ?: 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val feedItemView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false)
@@ -32,15 +32,18 @@ class PropertiesAdapter(
     inner class ViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         fun bindItem(item: Property) {
 
+            //Setting if is isFeatured or not
             if(item.isFeatured){
-                itemView.tvFeatured.text = "★ Featured Hostel"
+                itemView.tvFeatured.text = context.getString(R.string.featured)
             }else{
-                itemView.tvFeatured.text = "Hostel"
+                itemView.tvFeatured.text = context.getString(R.string.hostel)
             }
 
-            var prefix = item.images?.get(0)?.prefix
-            var suffix = item.images?.get(0)?.suffix
+            //Setting the image of the hostel
+            val prefix = item.images?.get(0)?.prefix
+            val suffix = item.images?.get(0)?.suffix
 
+            //Using lib Glide to load the image from url
             Glide.with(context).load("http://"+prefix+suffix).into(object : SimpleTarget<Drawable>() {
                 override fun onResourceReady(resource: Drawable, transition: com.bumptech.glide.request.transition.Transition<in Drawable>?) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -49,13 +52,20 @@ class PropertiesAdapter(
                 }
             })
 
+            //Setting the property name
             itemView.tvName.text = getValue(item.propertyName)
-            itemView.tvRating.text = getValue(item.overallRating?.overall.toString())
 
+            //Setting the ratting with one decimal
+            val rate = item.overallRating?.overall?.div(10f)
+            itemView.tvRating.text = getValue(rate.toString())
+
+            //Setting the lowestPricePerNight
             val price = (item.lowestPricePerNight?.value)?.div(7.55f)
             val priceWithTwoDigits = "%.2f".format(price)
             val priceText = "€ $priceWithTwoDigits"
             itemView.tvPrice.text = priceText
+
+            //Setting the hostel overview
             itemView.tvOverview.text = getValue( item.overview)
         }
     }

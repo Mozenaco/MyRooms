@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyRooms</string>
+    <string name="featured">★ Featured Hostel</string>
+    <string name="hostel">Hostel</string>
 </resources>

@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
             mViewModel.getProperties()
             mViewModel.getCity()
         }
-
     }
 
     private fun setupObservers() {
@@ -62,5 +61,4 @@ class MainActivity : AppCompatActivity() {
         tvCity.text = "$name, $country"
         //Toast.makeText(this, "Data City Loaded", Toast.LENGTH_SHORT).show()
     }
-
 }
