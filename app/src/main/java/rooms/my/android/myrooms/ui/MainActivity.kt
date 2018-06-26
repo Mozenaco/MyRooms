@@ -1,5 +1,6 @@
 package rooms.my.android.myrooms.ui
 
+import android.arch.lifecycle.ViewModelProvider
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.arch.lifecycle.ViewModelProviders
@@ -13,6 +14,7 @@ import rooms.my.android.myrooms.data.model.Location
 import rooms.my.android.myrooms.viewmodel.ItensViewModel
 import rooms.my.android.myrooms.data.model.Property
 import rooms.my.android.myrooms.ui.adapter.PropertiesAdapter
+import javax.inject.Inject
 
 /**
  * The first activity called. Show a list of [Property] based on the data loaded
@@ -25,7 +27,14 @@ import rooms.my.android.myrooms.ui.adapter.PropertiesAdapter
 
 class MainActivity : AppCompatActivity() {
 
+//    @Inject
+//    lateinit var factory: ViewModelProvider.Factory
+
     lateinit var mViewModel: ItensViewModel
+
+//    private val mViewModel: ItensViewModel by lazy {
+//        ViewModelProviders.of(this, factory).get(ItensViewModel::class.java)
+//    }
 
     private val propertiesAdapter by lazy {
         PropertiesAdapter(this)
