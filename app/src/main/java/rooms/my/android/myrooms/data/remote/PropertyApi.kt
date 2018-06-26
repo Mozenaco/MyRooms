@@ -8,7 +8,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Url
 
-
+/**
+ * Interface for call the api and get the json using [Retrofit]
+ *
+ * @author Mateus Andrade
+ * @since 25/06/18
+ *
+ */
 
 interface PropertyApi {
 

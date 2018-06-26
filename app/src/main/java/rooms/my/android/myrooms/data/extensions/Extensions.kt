@@ -5,6 +5,14 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 
 /**
+ * Extensions, a useful tool provided by Kotlin
+ *
+ * @author Mateus Andrade
+ * @since 25/06/18
+ *
+ */
+
+/**
  * Return a [Observer] of non-nulls values
  */
 fun <T> createObserverNotNull(work: (T) -> Unit): Observer<T> {

@@ -14,6 +14,15 @@ import rooms.my.android.myrooms.viewmodel.ItensViewModel
 import rooms.my.android.myrooms.data.model.Property
 import rooms.my.android.myrooms.ui.adapter.PropertiesAdapter
 
+/**
+ * The first activity called. Show a list of [Property] based on the data loaded
+ * from the viewmodel [ItensViewModel]
+*
+* @author Mateus Andrade
+* @since 25/06/18
+*
+*/
+
 class MainActivity : AppCompatActivity() {
 
     lateinit var mViewModel: ItensViewModel

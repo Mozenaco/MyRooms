@@ -13,6 +13,14 @@ import android.os.Build
 import android.graphics.drawable.Drawable
 import com.bumptech.glide.request.target.SimpleTarget
 
+/**
+ * Adapter that put a [Property] object on the view
+ *
+ * @author Mateus Andrade
+ * @since 25/06/18
+ *
+ */
+
 class PropertiesAdapter(
         private val context: Context,
         var propertiesList: ArrayList<Property> = arrayListOf<Property>()): RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
@@ -44,7 +52,8 @@ class PropertiesAdapter(
             val suffix = item.images?.get(0)?.suffix
 
             //Using lib Glide to load the image from url
-            Glide.with(context).load("http://"+prefix+suffix).into(object : SimpleTarget<Drawable>() {
+            Glide.with(context)
+                    .load("http://"+prefix+suffix).into(object : SimpleTarget<Drawable>() {
                 override fun onResourceReady(resource: Drawable, transition: com.bumptech.glide.request.transition.Transition<in Drawable>?) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                         itemView.clImage.background = resource
