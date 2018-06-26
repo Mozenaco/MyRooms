@@ -34,10 +34,10 @@ import rooms.my.android.myrooms.ui.util.Util
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var mViewModel: ItensViewModel
+
 //    @Inject
 //    lateinit var factory: ViewModelProvider.Factory
-
-    lateinit var mViewModel: ItensViewModel
 
 //    private val mViewModel: ItensViewModel by lazy {
 //        ViewModelProviders.of(this, factory).get(ItensViewModel::class.java)
@@ -88,8 +88,7 @@ class MainActivity : AppCompatActivity() {
 
         val name = location.city?.name
         val country = location.city?.country
-
-        tvCity.text = "$name, $country"
+        tvCity.text = getString(R.string.city, name, country)
         //Toast.makeText(this, "Data City Loaded", Toast.LENGTH_SHORT).show()
     }
 }

@@ -2,4 +2,5 @@
     <string name="app_name">MyRooms</string>
     <string name="featured">★ Featured Hostel</string>
     <string name="hostel">Hostel</string>
+    <string name="city">%s, %s</string>
 </resources>
